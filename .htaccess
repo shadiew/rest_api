@@ -1,0 +1,14 @@
+# In case there is no PHP, deny access to php files (for safety)
+<IfModule !php5_module>
+    <FilesMatch "\.(php|phtml)$">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+</IfModule>
+# the following should be added if you want to parse .php and .phtml file as PHP
+# .phps will add syntax highlighting to the file when requesting it with a browser
+<IfModule php5_module>
+    AddType text/html .php .phtml .phps
+    AddHandler application/x-httpd-php .php .phtml
+    AddHandler application/x-httpd-php-source .phps
+</IfModule>
